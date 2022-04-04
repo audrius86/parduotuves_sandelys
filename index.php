@@ -1,3 +1,3 @@
 <?php
-echo "parduotuves_sandeliukas";
+echo date('Y-m-d');
 ?>
