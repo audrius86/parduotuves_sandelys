@@ -34,12 +34,23 @@ include_once 'config.php';
 </head>
 <body>
 <header>
+    <?php if (isLoged() === false) { ?>
+        <a href="index.php?action=home">Home</a>
+        <a href="index.php?action=login">Login</a>
+    <?php } else if (isLoged() === true and $_SESSION['role'] === 'admin') { ?>
     <a href="index.php?action=add_role">Add Role</a>
-    <a href="index.php?action=employee_registration">New Employee</a>
-    <a href="index.php?action=product_category">Add Category</a>
-    <a href="index.php?action=create_product">Create Product</a>
-    <a href="index.php?action=warehouse_products">Warehouse Products</a>
-    <a href="index.php?action=login">Login</a>
+        <a href="index.php?action=employee_registration">New Employee</a>
+        <a href="index.php?action=product_category">Add Category</a>
+        <a href="index.php?action=create_product">Create Product</a>
+    <?php } else if (isLoged() === true and $_SESSION['role'] === 'Warehouse worker') { ?>
+        <a href="index.php?action=products_list">Products List</a>
+        <a href="index.php?action=warehouse_products">Warehouse Products</a>
+        <a href="index.php?action=logout">Logout</a>
+    <?php } else if (isLoged() === true and $_SESSION['role'] === 'Store employee') { ?>
+        <a href="index.php?action=warehouse_products_list">Warehouse Products List</a>
+        <a href="index.php?action=shop_order">Make an Order</a>
+        <a href="index.php?action=logout">Logout</a>
+    <?php } ?>
 </header>
 <main class="main">
     <?php
@@ -55,6 +66,8 @@ include_once 'config.php';
         include 'pages/warehouse_products.php';
     } elseif ($action === 'login') {
         include 'pages/login.php';
+    } elseif ($action === 'logout') {
+        include 'pages/logout.php';
     }
     ?>
 </main>

@@ -17,3 +17,12 @@ $connection = mysqli_connect($ip, $username, $password, $database);
 if (!$connection) {
     die("Connection failed: " . mysqli_connect_error());
 }
+
+function isLoged(): bool
+{
+    if (isset($_SESSION['email'])) {
+        return true;
+    } else {
+        return false;
+    }
+}
