@@ -5,6 +5,7 @@
 </style>
 <?php
 include_once 'config.php';
+
 /**
  * prisijungimas
  * registracija su rolemis (sandelio darbuotojas, parduotuves darbuotojas)
@@ -27,4 +28,34 @@ include_once 'config.php';
  */
 ?>
 
+<html>
+<head>
+    <title>Last Bora</title>
+</head>
+<body>
+<header>
+    <a href="index.php?action=employee_registration">New Employee</a>
+    <!--    <a href="index.php?action=employee">Hire an employee</a>-->
+    <!--    <a href="index.php?action=reservation">Make a reservation</a>-->
+    <!--    <a href="index.php?action=reservations_list">Reservations list</a>-->
+</header>
+<main class="main">
+    <?php
+    if ($action === 'employee_registration') {
+        include 'pages/employee_registration.php';
+    }
+    //    elseif ($action === 'employee') {
+    //        include 'pages/employee.php';
+    //    } elseif ($action === 'reservation') {
+    //        include 'pages/reservation.php';
+    //    } elseif ($action === 'reservations_list') {
+    //        include 'pages/reservations_list.php';
+    //    }
+    ?>
+</main>
+<footer>
 
+</footer>
+
+</body>
+</html>
