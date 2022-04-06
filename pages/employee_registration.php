@@ -48,8 +48,8 @@ if(isset($_POST['employee_name'])){
     if (empty($errors)) {
         $sql = "INSERT INTO employees (employee_name, role_id, email, password) VALUES ('$employee_name', '$role_id', '$email', '$password')";
         $result = mysqli_query($connection, $sql);
-        ?>
-        <script>alert('New Employee Added')</script>
+//        ?>
+<!--        <script>alert('New Employee Added')</script>-->
 <?php
         header('Location: index.php');
     }
@@ -66,6 +66,7 @@ if(isset($_POST['employee_name'])){
 
     $sql = "SELECT * FROM roles";
     $action = mysqli_query($connection ,$sql);
+    echo '<br>';
     echo '<label><b>Select role</b></label>';
     echo '<br>';
     echo "<select name='role_id'>";
