@@ -65,17 +65,17 @@ if(isset($_POST['employee_name'])){
         <?php }
 
     $sql = "SELECT * FROM roles";
-    $action = mysqli_query($connection ,$sql);
-    echo '<br>';
-    echo '<label><b>Select role</b></label>';
-    echo '<br>';
-    echo "<select name='role_id'>";
-        echo "<option value='-1'>–</option>";
-        while ($row = mysqli_fetch_array($action)) {
-        echo "<option value='" . $row['id'] . "'>" . $row['role'] . "</option>";
-        }
-        echo "</select>";
-    if (isset($errors['role_id'])) { ?>
+    $action = mysqli_query($connection ,$sql);?>
+    <br>
+    <label><b>Select role</b></label>
+    <br>
+    <select name='role_id'>
+       <option value='-1'>–</option>
+        <?php while ($row = mysqli_fetch_array($action)) {?>
+        <option value="<?php echo $row['id'] ?>"><?php echo $row['role'] ?></option>";
+        <?php } ?>
+        </select>
+    <?php if (isset($errors['role_id'])) { ?>
     <span style="color: red"><?php echo implode(',', $errors['role_id']);?></span>
     <?php
     }
