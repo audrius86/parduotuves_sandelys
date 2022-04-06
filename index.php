@@ -52,8 +52,7 @@ include_once 'config.php';
         include 'pages/create_product.php';
     } elseif ($action === 'warehouse_products') {
         include 'pages/warehouse_products.php';
-    }
-    ?>
+    }?>
 </main>
 <footer>
 
