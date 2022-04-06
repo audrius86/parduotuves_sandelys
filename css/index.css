@@ -18,7 +18,12 @@ header a{
     background-color: #ffffb3;
 }
 
-main form{
+.main h1{
+    text-align: center;
+}
+
+
+.main form{
     padding-top: 30px;
     margin: 0 auto;
     width: 600px;

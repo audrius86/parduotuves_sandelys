@@ -42,6 +42,7 @@ include_once 'config.php';
         <a href="index.php?action=employee_registration">New Employee</a>
         <a href="index.php?action=product_category">Add Category</a>
         <a href="index.php?action=create_product">Create Product</a>
+        <a href="index.php?action=logout">Logout</a>
     <?php } else if (isLoged() === true and $_SESSION['role'] === 'Warehouse worker') { ?>
         <a href="index.php?action=products_list">Products List</a>
         <a href="index.php?action=warehouse_products">Warehouse Products</a>
@@ -54,7 +55,9 @@ include_once 'config.php';
 </header>
 <main class="main">
     <?php
-    if ($action === 'add_role') {
+    if ($action === 'home') {
+        include 'pages/home.php';
+    } elseif ($action === 'add_role') {
         include 'pages/add_role.php';
     } elseif ($action === 'employee_registration') {
         include 'pages/employee_registration.php';
