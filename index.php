@@ -39,6 +39,7 @@ include_once 'config.php';
     <a href="index.php?action=product_category">Add Category</a>
     <a href="index.php?action=create_product">Create Product</a>
     <a href="index.php?action=warehouse_products">Warehouse Products</a>
+    <a href="index.php?action=login">Login</a>
 </header>
 <main class="main">
     <?php
@@ -52,7 +53,10 @@ include_once 'config.php';
         include 'pages/create_product.php';
     } elseif ($action === 'warehouse_products') {
         include 'pages/warehouse_products.php';
-    }?>
+    } elseif ($action === 'login') {
+        include 'pages/login.php';
+    }
+    ?>
 </main>
 <footer>
 

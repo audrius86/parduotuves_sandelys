@@ -35,16 +35,19 @@ if(isset($_POST['product_title'])){
 <form action="index.php?action=create_product" method="post">
 <?php
     $sql = "SELECT * FROM products_categories";
-    $action = mysqli_query($connection ,$sql);
-    echo '<br>';
-    echo '<label><b>Select product category</b></label>';
-    echo '<br>';
-    echo "<select name='category_id'>";
-        echo "<option value='-1'>–</option>";
-        while ($row = mysqli_fetch_array($action)) {
-        echo "<option value='" . $row['id'] . "'>" . $row['category'] . "</option>";
-        }
-        echo "</select>";
+    $action = mysqli_query($connection ,$sql);?>
+    <br>
+    <label><b>Select product category</b></label>;
+    <br>
+
+    <select name='category_id'>
+        <option value='-1'>–</option>
+        <?php
+        while ($row = mysqli_fetch_array($action)) { ?>
+        <option value="<?php echo $row['id'] ?>"> <?php echo $row['category'] ?> </option>
+        <?php }?>
+        </select>
+    <?php
     if (isset($errors['category_id'])) { ?>
     <span style="color: red"><?php echo implode(',', $errors['category_id']);?></span>
     <?php
