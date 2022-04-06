@@ -1,0 +1,45 @@
+header {
+    width: 100%;
+    height: 10%;
+    background-color: #fafa9a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header a{
+    margin: 0 20px;
+    font-size: 30px;
+}
+
+.main{
+    width: 100%;
+    height: 80%;
+    background-color: #fafa9a;
+}
+
+main form{
+    padding-top: 30px;
+    margin: 0 auto;
+    width: 500px;
+}
+
+form input, select{
+    width: 300px;
+    height: 30px;
+    margin: 20px 0;
+}
+
+footer{
+    width: 100%;
+    height: 10%;
+    background-color: #fafa9a;
+}
+
+/*.reservations_list {*/
+/*    border-collapse: collapse;*/
+/*}*/
+
+/*.reservations_list tr, td, th{*/
+/*    border: 1px solid black;*/
+/*}*/
