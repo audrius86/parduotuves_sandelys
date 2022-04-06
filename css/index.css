@@ -1,7 +1,7 @@
 header {
     width: 100%;
     height: 10%;
-    background-color: #fafa9a;
+    background-color: #f1f139;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -15,17 +15,17 @@ header a{
 .main{
     width: 100%;
     height: 80%;
-    background-color: #fafa9a;
+    background-color: #ffffb3;
 }
 
 main form{
     padding-top: 30px;
     margin: 0 auto;
-    width: 500px;
+    width: 600px;
 }
 
 form input, select{
-    width: 300px;
+    width: 400px;
     height: 30px;
     margin: 20px 0;
 }
