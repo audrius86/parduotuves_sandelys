@@ -49,10 +49,12 @@ footer{
     background-color: #fafa9a;
 }
 
-/*.reservations_list {*/
-/*    border-collapse: collapse;*/
-/*}*/
+.products_list {
+    border-collapse: collapse;
+}
 
-/*.reservations_list tr, td, th{*/
-/*    border: 1px solid black;*/
-/*}*/
+.products_list tr, td, th{
+    border: 1px solid black;
+    text-align: center;
+    padding: 5px;
+}

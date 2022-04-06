@@ -54,12 +54,13 @@ include_once 'config.php';
         <?php } ?>
         <a href="index.php?action=logout">Logout</a>
     <?php } ?>
-
 </header>
 <main class="main">
     <?php
     if ($action === 'home') {
         include 'pages/home.php';
+    } elseif ($action === 'login') {
+        include 'pages/login.php';
     } elseif ($action === 'add_role') {
         include 'pages/add_role.php';
     } elseif ($action === 'employee_registration') {
@@ -68,11 +69,11 @@ include_once 'config.php';
         include 'pages/add_product_category.php';
     } elseif ($action === 'create_product') {
         include 'pages/create_product.php';
+    } elseif ($action === 'products_list') {
+        include 'pages/products_list.php';
     } elseif ($action === 'warehouse_products') {
         include 'pages/warehouse_products.php';
-    } elseif ($action === 'login') {
-        include 'pages/login.php';
-    } elseif ($action === 'logout') {
+    }  elseif ($action === 'logout') {
         include 'pages/logout.php';
     }
     ?>
