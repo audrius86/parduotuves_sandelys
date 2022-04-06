@@ -38,9 +38,7 @@ include_once 'config.php';
     <a href="index.php?action=employee_registration">New Employee</a>
     <a href="index.php?action=product_category">Add Category</a>
     <a href="index.php?action=create_product">Create Product</a>
-    <!--    <a href="index.php?action=employee">Hire an employee</a>-->
-    <!--    <a href="index.php?action=reservation">Make a reservation</a>-->
-    <!--    <a href="index.php?action=reservations_list">Reservations list</a>-->
+    <a href="index.php?action=warehouse_products">Warehouse Products</a>
 </header>
 <main class="main">
     <?php
@@ -52,14 +50,9 @@ include_once 'config.php';
         include 'pages/add_product_category.php';
     } elseif ($action === 'create_product') {
         include 'pages/create_product.php';
+    } elseif ($action === 'warehouse_products') {
+        include 'pages/warehouse_products.php';
     }
-    //    elseif ($action === 'employee') {
-    //        include 'pages/employee.php';
-    //    } elseif ($action === 'reservation') {
-    //        include 'pages/reservation.php';
-    //    } elseif ($action === 'reservations_list') {
-    //        include 'pages/reservations_list.php';
-    //    }
     ?>
 </main>
 <footer>
