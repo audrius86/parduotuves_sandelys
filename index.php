@@ -37,21 +37,24 @@ include_once 'config.php';
     <?php if (isLoged() === false) { ?>
         <a href="index.php?action=home">Home</a>
         <a href="index.php?action=login">Login</a>
-    <?php } else if (isLoged() === true and $_SESSION['role'] === 'admin') { ?>
-    <a href="index.php?action=add_role">Add Role</a>
-        <a href="index.php?action=employee_registration">New Employee</a>
-        <a href="index.php?action=product_category">Add Category</a>
-        <a href="index.php?action=create_product">Create Product</a>
-        <a href="index.php?action=logout">Logout</a>
-    <?php } else if (isLoged() === true and $_SESSION['role'] === 'Warehouse worker') { ?>
-        <a href="index.php?action=products_list">Products List</a>
-        <a href="index.php?action=warehouse_products">Warehouse Products</a>
-        <a href="index.php?action=logout">Logout</a>
-    <?php } else if (isLoged() === true and $_SESSION['role'] === 'Store employee') { ?>
-        <a href="index.php?action=warehouse_products_list">Warehouse Products List</a>
-        <a href="index.php?action=shop_order">Make an Order</a>
+    <?php } else { ?>
+        <?php if (getUserRole($connection) === 'admin') { ?>
+            <a href="index.php?action=add_role">Add Role</a>
+            <a href="index.php?action=employee_registration">New Employee</a>
+            <a href="index.php?action=product_category">Add Category</a>
+            <a href="index.php?action=create_product">Create Product</a>
+        <?php } ?>
+        <?php if (getUserRole($connection) === 'Warehouse worker') { ?>
+            <a href="index.php?action=products_list">Products List</a>
+            <a href="index.php?action=warehouse_products">Warehouse Products</a>
+        <?php } ?>
+        <?php if (getUserRole($connection) === 'Store employee') { ?>
+            <a href="index.php?action=warehouse_products_list">Warehouse Products List</a>
+            <a href="index.php?action=shop_order">Make an Order</a>
+        <?php } ?>
         <a href="index.php?action=logout">Logout</a>
     <?php } ?>
+
 </header>
 <main class="main">
     <?php

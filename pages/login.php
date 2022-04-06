@@ -4,12 +4,6 @@ if (isset($_POST['email'])) {
     $password = $_POST['password'];
 
 
-    $sql = "SELECT r.role FROM roles r join employees e on r.id = e.role_id WHERE e.email='$email'";
-    $result = mysqli_fetch_assoc(mysqli_query($connection, $sql));
-    if($result) {
-        $role = $result['role'];
-    }
-
     $errors = [];
 
     if (empty($email) || empty($password)) {
@@ -27,7 +21,6 @@ if (isset($_POST['email'])) {
 
     if (empty($errors)) {
         $_SESSION['email'] = $email;
-        $_SESSION['role'] = $role;
         header('Location: index.php');
     }
 }

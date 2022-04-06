@@ -26,3 +26,10 @@ function isLoged(): bool
         return false;
     }
 }
+
+function getUserRole($connection): string
+{
+    $sql = "SELECT r.role FROM roles r join employees e on r.id = e.role_id WHERE e.email='" .$_SESSION['email'] . "'";
+    $result = mysqli_fetch_assoc(mysqli_query($connection, $sql));
+    return $result['role'];
+}
