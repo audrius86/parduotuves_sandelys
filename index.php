@@ -37,6 +37,7 @@ include_once 'config.php';
     <a href="index.php?action=add_role">Add Role</a>
     <a href="index.php?action=employee_registration">New Employee</a>
     <a href="index.php?action=product_category">Add Category</a>
+    <a href="index.php?action=create_product">Create Product</a>
     <!--    <a href="index.php?action=employee">Hire an employee</a>-->
     <!--    <a href="index.php?action=reservation">Make a reservation</a>-->
     <!--    <a href="index.php?action=reservations_list">Reservations list</a>-->
@@ -48,7 +49,9 @@ include_once 'config.php';
     } elseif ($action === 'employee_registration') {
         include 'pages/employee_registration.php';
     } elseif ($action === 'product_category') {
-        include 'pages/product_category.php';
+        include 'pages/add_product_category.php';
+    } elseif ($action === 'create_product') {
+        include 'pages/create_product.php';
     }
     //    elseif ($action === 'employee') {
     //        include 'pages/employee.php';
