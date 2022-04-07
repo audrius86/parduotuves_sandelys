@@ -19,6 +19,10 @@ if(isset($_POST['store_id'])){
         $errors['employee_id'][] = 'Select employee!';
     }
 
+    if($salary === ''){
+        $errors['salary'][] = 'Enter the salary!';
+    }
+
 
     if (empty($errors)) {
         $sql = "INSERT INTO employment_contracts (store_id, employee_id, salary) VALUES ('$store_id', '$employee_id', '$salary')";
@@ -72,7 +76,14 @@ if(isset($_POST['store_id'])){
     }
     ?>
     <br>
-    <input type="number" step="0.01" name="salary" placeholder="Salary" required="required"/> <br/>
+    <input type="number" step="0.01" name="salary" placeholder="Salary"/>
+    <?php
+    if (isset($errors['salary'])) { ?>
+        <span style="color: red"><?php echo implode(',', $errors['salary']);?></span>
+        <?php
+    }
+    ?>
+    <br/>
     <br>
     <input type="submit" value="Hire Employee">
 </form>
