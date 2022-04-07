@@ -53,6 +53,9 @@ if(isset($_POST['quantity'])){
         <th>Quantity</th>
         <th>Action</th>
     </tr>
+
+<!--    Pasidaryti filtravima pagal kategorijas if(all){}else{$category='select-input-value'}-->
+
     <?php
     $sql = "SELECT p.*, c.category FROM products p JOIN products_categories c ON p.category_id = c.id";
     $result = mysqli_query($connection, $sql);
@@ -60,7 +63,7 @@ if(isset($_POST['quantity'])){
     <tr>
         <form action="#" method="post">
         <td>
-            <input type="hidden" id="product_id" name="product_id" value="<?php echo $row['id'] ?>">
+            <input type="hidden" name="product_id" value="<?php echo $row['id'] ?>">
             <?php echo $row['id'] ?>
         </td>
         <td>

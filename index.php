@@ -43,6 +43,8 @@ include_once 'config.php';
             <a href="index.php?action=employee_registration">New Employee</a>
             <a href="index.php?action=product_category">Add Category</a>
             <a href="index.php?action=create_product">Create Product</a>
+            <a href="index.php?action=create_store">Open New Store</a>
+            <a href="index.php?action=hire_employee">Hire An Employee</a>
         <?php } ?>
         <?php if (getUserRole($connection) === 'Warehouse worker') { ?>
             <a href="index.php?action=products_list">Products List</a>
@@ -69,6 +71,10 @@ include_once 'config.php';
         include 'pages/add_product_category.php';
     } elseif ($action === 'create_product') {
         include 'pages/create_product.php';
+    } elseif ($action === 'create_store') {
+        include 'pages/create_store.php';
+    } elseif ($action === 'hire_employee') {
+        include 'pages/hire_employee.php';
     } elseif ($action === 'products_list') {
         include 'pages/products_list.php';
     } elseif ($action === 'warehouse_products') {
