@@ -6,31 +6,43 @@ if(isset($_POST['quantity'])){
     $errors = [];
 
     if($quantity < 1) {
-        $errors[] = 'You entered bad quantity value';
+        $errors['1'][] = 'You entered bad quantity value';
     }
 
-    $sql = "SELECT product_id, quantity FROM warehouse_products WHERE product_id='$product_id'";
-
-    $result = mysqli_fetch_assoc(mysqli_query($connection, $sql));
-
-    if(!isset($result['quantity']) ?? null){
-        $current_quantity = 0;
-    }else{
-        $current_quantity = $result['quantity'];
+    if($quantity === ''){
+        $errors['2'][] = 'You leave empty Quantity field';
     }
 
-    $updated_quantity = $current_quantity + $quantity;
+    if(empty($errors)) {
 
-    if ($result) {
-        $sql = "UPDATE warehouse_products SET quantity='$updated_quantity' WHERE product_id='$product_id'";
-    }else{
-        $sql = "INSERT INTO warehouse_products (product_id, quantity) VALUES ('$product_id','$quantity')";
+        $sql = "SELECT product_id, quantity FROM warehouse_products WHERE product_id='$product_id'";
+
+        $result = mysqli_fetch_assoc(mysqli_query($connection, $sql));
+
+        if (!isset($result['quantity']) ?? null) {
+            $current_quantity = 0;
+        } else {
+            $current_quantity = $result['quantity'];
+        }
+
+        $updated_quantity = $current_quantity + $quantity;
+
+        if ($result) {
+            $sql = "UPDATE warehouse_products SET quantity='$updated_quantity' WHERE product_id='$product_id'";
+        } else {
+            $sql = "INSERT INTO warehouse_products (product_id, quantity) VALUES ('$product_id','$quantity')";
+        }
+        $result = mysqli_query($connection, $sql);
     }
-    $result = mysqli_query($connection, $sql);
 }
 ?>
-
+<input type="button" onclick="location.href='index.php?action=warehouse_products';" value="Go to Warehouse" />
 <h1>Products List</h1>
+<h5 style="color: red"><?php
+    if(isset($errors['2'])){
+        echo implode(',', $errors['2']);
+    }
+    ?></h5>
 
 <table class="products_list">
     <tr>
@@ -64,7 +76,16 @@ if(isset($_POST['quantity'])){
             <input id="quantity_id" type="number" name="quantity" min="1" placeholder="1 ... ">
         </td>
         <td>
+            <?php
+            $sql = "SELECT * FROM warehouse_products WHERE id='". $row['id']."'";
+            $search_id = mysqli_fetch_assoc(mysqli_query($connection, $sql));
+
+            if ($search_id) {?>
+            <input type="submit" value="Buy More">
+            <?php } else { ?>
             <input type="submit" value="Add To Warehouse">
+            <?php } ?>
+
         </td>
         </form>
     </tr>
