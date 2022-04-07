@@ -51,8 +51,9 @@ include_once 'config.php';
             <a href="index.php?action=warehouse_products">Warehouse Products</a>
         <?php } ?>
         <?php if (getUserRole($connection) === 'Store employee') { ?>
-            <a href="index.php?action=warehouse_products_list">Warehouse Products List</a>
-            <a href="index.php?action=shop_order">Make an Order</a>
+            <a href="index.php?action=store_management">Store Management</a>
+<!--            <a href="index.php?action=warehouse_products_list">Warehouse Products List</a>-->
+<!--            <a href="index.php?action=shop_order">Make an Order</a>-->
         <?php } ?>
         <a href="index.php?action=logout">Logout</a>
     <?php } ?>
@@ -79,7 +80,9 @@ include_once 'config.php';
         include 'pages/products_list.php';
     } elseif ($action === 'warehouse_products') {
         include 'pages/warehouse_products.php';
-    }  elseif ($action === 'logout') {
+    } elseif ($action === 'store_management') {
+        include 'pages/store_management.php';
+    } elseif ($action === 'logout') {
         include 'pages/logout.php';
     }
     ?>
