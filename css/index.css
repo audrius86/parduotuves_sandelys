@@ -58,3 +58,9 @@ footer{
     text-align: center;
     padding: 5px;
 }
+
+#product_id{
+    width: 18px;
+    text-align: center;
+    background-color: white;
+}
