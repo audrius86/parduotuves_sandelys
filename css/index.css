@@ -64,3 +64,12 @@ footer{
     text-align: center;
     background-color: white;
 }
+
+#quantity_id{
+    width: 50px;
+
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    display: none;
+}

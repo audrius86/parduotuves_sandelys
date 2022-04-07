@@ -3,15 +3,30 @@ if(isset($_POST['quantity'])){
     $product_id = $_POST['product_id'];
     $quantity = $_POST['quantity'];
 
+    $errors = [];
+
+    if($quantity < 1) {
+        $errors[] = 'You entered bad quantity value';
+    }
+
     $sql = "SELECT product_id, quantity FROM warehouse_products WHERE product_id='$product_id'";
+
     $result = mysqli_fetch_assoc(mysqli_query($connection, $sql));
-    $updated_quantity = $result['quantity'] + $quantity;
+
+    if(!isset($result['quantity']) ?? null){
+        $current_quantity = 0;
+    }else{
+        $current_quantity = $result['quantity'];
+    }
+
+    $updated_quantity = $current_quantity + $quantity;
+
     if ($result) {
         $sql = "UPDATE warehouse_products SET quantity='$updated_quantity' WHERE product_id='$product_id'";
-        $result = mysqli_query($connection, $sql);
-        }else{
+    }else{
         $sql = "INSERT INTO warehouse_products (product_id, quantity) VALUES ('$product_id','$quantity')";
     }
+    $result = mysqli_query($connection, $sql);
 }
 ?>
 
@@ -46,7 +61,7 @@ if(isset($_POST['quantity'])){
             <?php echo $row['price'] ?>
         </td>
         <td>
-            <input type="number" name="quantity" min="1" placeholder="Quantity">
+            <input id="quantity_id" type="number" name="quantity" min="1" placeholder="1 ... ">
         </td>
         <td>
             <input type="submit" value="Add To Warehouse">
