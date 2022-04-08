@@ -82,6 +82,8 @@ include_once 'config.php';
         include 'pages/warehouse_products.php';
     } elseif ($action === 'store_management') {
         include 'pages/store_management.php';
+    } elseif ($action === 'update_quantity'){
+        include 'pages/update_quantity.php';
     } elseif ($action === 'logout') {
         include 'pages/logout.php';
     }
