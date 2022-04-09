@@ -34,7 +34,6 @@ if(isset($_POST['category_id'])){
         header('Location: index.php');
     }
 }
-
 ?>
 
 <h1>Manage Store Products</h1>
@@ -42,6 +41,8 @@ if(isset($_POST['category_id'])){
     <?php
     $sql = "SELECT * FROM stores";
     $action = mysqli_query($connection ,$sql);?>
+
+<!--    second option to get store id -->
 <!--    <br>-->
 <!--    <label><b>Choose Store</b></label>-->
 <!--    <br>-->
@@ -59,6 +60,7 @@ if(isset($_POST['category_id'])){
 <!--        --><?php
 //    }
 //    ?>
+<!--    --------------------------------------------------->
     <br>
     <?php $sql = "SELECT * FROM products_categories";
     $action = mysqli_query($connection ,$sql); ?>
