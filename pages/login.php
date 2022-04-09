@@ -10,10 +10,11 @@ if (isset($_POST['email'])) {
         $errors['email_password'][] = 'Empty fields in form!';
     }
 
-    $sql = "SELECT password FROM employees WHERE email='$email'";
+    $sql = "SELECT id, password FROM employees WHERE email='$email'";
     $result = mysqli_fetch_assoc(mysqli_query($connection, $sql));
 
     if($password != null) {
+        $_SESSION['employee_id'] = $result['id'];
         if ($result['password'] != $password) {
             $errors['password'][] = 'Incorrect password!';
         }

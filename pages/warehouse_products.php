@@ -41,8 +41,10 @@ while ($row = mysqli_fetch_array($result2)) {
         <th>Action</th>
     </tr>
     <?php
+    $sql = "SELECT p.id, w.quantity, p.product_title, p.price, c.category FROM warehouse_products w JOIN products p ON w.product_id = p.id JOIN products_categories c ON p.category_id = c.id ORDER BY p.id";
 
     if(isset($_POST['category_id'])){
+
         $category = $_POST['category_id'];
 
         if(in_array($category, $categories_array)){
