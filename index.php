@@ -53,7 +53,7 @@ include_once 'config.php';
         <?php if (getUserRole($connection) === 'Store employee') { ?>
             <a href="index.php?action=register_category">Register Category</a>
             <a href="index.php?action=edit_store_taxes">Store Taxes</a>
-<!--            <a href="index.php?action=warehouse_products_list">Warehouse Products List</a>-->
+            <a href="index.php?action=warehouse_products_list">Warehouse Products List</a>
 <!--            <a href="index.php?action=shop_order">Make an Order</a>-->
         <?php } ?>
         <a href="index.php?action=logout">Logout</a>
@@ -87,6 +87,8 @@ include_once 'config.php';
         include 'pages/update_quantity.php';
     } elseif ($action === 'edit_store_taxes'){
         include 'pages/edit_store_taxes.php';
+    } elseif ($action === 'warehouse_products_list'){
+        include 'pages/warehouse_products_list.php';
     } elseif ($action === 'logout') {
         include 'pages/logout.php';
     }

@@ -71,7 +71,9 @@ if(isset($_POST['category_id'])){
     <select name='category_id'>
         <option value='-1'>–</option>
         <?php
-        while ($row = mysqli_fetch_array($action)) { ?>
+        while ($row = mysqli_fetch_array($action)) {
+
+            ?>
             <option value="<?php echo $row['id'] ?>"> <?php echo $row['category'] ?> </option>
         <?php }?>
     </select>
