@@ -6,9 +6,9 @@ if(isset($_POST['category_id'])){
 
     $errors = [];
 
-    $sql = "SELECT * FROM stores s JOIN employment_contracts ec ON s.id = ec.store_id WHERE ec.employee_id = ' ". $_SESSION['employee_id'] ." '";
+    $sql = "SELECT *, ec.store_id FROM stores s JOIN employment_contracts ec ON s.id = ec.store_id WHERE ec.employee_id = ' ". $_SESSION['employee_id'] ." '";
     $result = mysqli_fetch_assoc(mysqli_query($connection, $sql));
-    $store_id = $result['id'];
+    $store_id = $result['store_id'];
 
 
     $sql = "SELECT * FROM products_categories WHERE id = '$category_id'";
@@ -20,7 +20,7 @@ if(isset($_POST['category_id'])){
     $sql = "SELECT * FROM store_management WHERE category_id = '$category_id' and store_id = '$store_id'";
     $result = mysqli_query($connection, $sql);
     if(mysqli_num_rows($result)) {
-        $errors['category_id'][] = 'This category already completed!';
+        $errors['category_id'][] = 'This category already registered!';
     }
 
     if($surcharge === ''){

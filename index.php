@@ -37,6 +37,7 @@ include_once 'config.php';
     <?php if (isLoged() === false) { ?>
         <a href="index.php?action=home">Home</a>
         <a href="index.php?action=login">Login</a>
+        <a href="index.php?action=customer_menu">Customer Menu</a>
     <?php } else { ?>
         <?php if (getUserRole($connection) === 'admin') { ?>
             <a href="index.php?action=add_role">Add Role</a>
@@ -53,8 +54,7 @@ include_once 'config.php';
         <?php if (getUserRole($connection) === 'Store employee') { ?>
             <a href="index.php?action=register_category">Register Category</a>
             <a href="index.php?action=edit_store_taxes">Store Taxes</a>
-            <a href="index.php?action=warehouse_products_list">Warehouse Products List</a>
-<!--            <a href="index.php?action=shop_order">Make an Order</a>-->
+            <a href="index.php?action=order_to_store">Order To Store</a>
         <?php } ?>
         <a href="index.php?action=logout">Logout</a>
     <?php } ?>
@@ -65,6 +65,8 @@ include_once 'config.php';
         include 'pages/home.php';
     } elseif ($action === 'login') {
         include 'pages/login.php';
+    } elseif ($action === 'customer_menu') {
+        header('Location: customer.php');
     } elseif ($action === 'add_role') {
         include 'pages/add_role.php';
     } elseif ($action === 'employee_registration') {
@@ -87,8 +89,8 @@ include_once 'config.php';
         include 'pages/update_quantity.php';
     } elseif ($action === 'edit_store_taxes'){
         include 'pages/edit_store_taxes.php';
-    } elseif ($action === 'warehouse_products_list'){
-        include 'pages/warehouse_products_list.php';
+    } elseif ($action === 'order_to_store'){
+        include 'pages/order_to_store.php';
     } elseif ($action === 'logout') {
         include 'pages/logout.php';
     }

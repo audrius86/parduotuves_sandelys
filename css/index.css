@@ -18,7 +18,7 @@ header a{
     background-color: #ffffb3;
 }
 
-.main h1{
+.main h1,h2,h3,h4,h5,h6{
     text-align: center;
 }
 
@@ -71,4 +71,31 @@ footer{
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     display: none;
+}
+
+#admin_button{
+    background-color: lightgrey;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+
+
+
+#credit_value a{
+    margin: 5px;
+    padding: 2px 10px;
+    font-size: 18px;
+    background-color: #c6ecff;
+    width: 50px;
+    color: black;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#credit_value a:hover{
+    font-size: 20px;
+    text-decoration: underline;
+    background-color: #005385;
+    color: white;
 }

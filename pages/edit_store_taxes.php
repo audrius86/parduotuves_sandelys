@@ -1,8 +1,10 @@
 <?php
+//
+//$sql = "SELECT *, ec.store_id FROM stores s JOIN employment_contracts ec ON s.id = ec.store_id WHERE ec.employee_id = ' ". $_SESSION['employee_id'] ." '";
 
-$sql = "SELECT * FROM stores s JOIN employment_contracts ec ON s.id = ec.store_id WHERE ec.employee_id = ' ". $_SESSION['employee_id'] ." '";
+$sql = "SELECT *, ec.store_id FROM stores s JOIN employment_contracts ec ON s.id = ec.store_id WHERE ec.employee_id = ' ". $_SESSION['employee_id'] ." '";
 $result = mysqli_fetch_assoc(mysqli_query($connection, $sql));
-$store_id = $result['id'];
+$store_id = $result['store_id'];
 
 $category_id = $_POST['category_id'] ?? null;
 
@@ -26,7 +28,7 @@ if (isset($_POST['category_discount'])) {
         <td>Surcharge</td>
         <td>Category_discount</td>
     </tr>
-    <?php $sql = "SELECT * FROM products_categories";
+    <?php $sql = "SELECT pc.*, sm.surcharge, sm.category_discount FROM products_categories pc JOIN store_management sm ON pc.id = sm.category_id WHERE sm.store_id = '$store_id'";
     $action = mysqli_query($connection ,$sql);
     while ($row = mysqli_fetch_array($action)) { ?>
     <tr>
@@ -34,13 +36,13 @@ if (isset($_POST['category_discount'])) {
         <form action="#" method="post">
             <td>
                 <input type="hidden" name="category_id" value="<?php echo $row['id'] ?>">
-                <input type="number" step="0.01" name="surcharge">
+                <input type="number" step="0.01" name="surcharge" placeholder="<?php echo $row['surcharge'] ?>">
                 <input type="submit" value="update">
             </td>
         </form>
         <form action="#" method="post">
             <td><input type="hidden" name="category_id" value="<?php echo $row['id'] ?>">
-                <input type="number" step="0.01" name="category_discount">
+                <input type="number" step="0.01" name="category_discount" placeholder="<?php echo $row['category_discount'] ?>">
                 <input type="submit" value="update">
             </td>
         </form>

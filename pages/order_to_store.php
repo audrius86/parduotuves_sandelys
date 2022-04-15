@@ -1,8 +1,11 @@
 <?php
 if(isset($_POST['order_quantity'])) {
-    $sql = "SELECT * FROM stores s JOIN employment_contracts ec ON s.id = ec.store_id WHERE ec.employee_id = ' " . $_SESSION['employee_id'] . " '";
+
+
+
+    $sql = "SELECT *, ec.store_id FROM stores s JOIN employment_contracts ec ON s.id = ec.store_id WHERE ec.employee_id = ' " . $_SESSION['employee_id'] . " '";
     $result = mysqli_fetch_assoc(mysqli_query($connection, $sql));
-    $store_id = $result['id'];
+    $store_id = $result['store_id'];
 
     $product_id = $_POST['product_id'] ?? null;
     $purchase_price = $_POST['purchase_price'] ?? null;
@@ -18,26 +21,40 @@ if(isset($_POST['order_quantity'])) {
         $errors['order_quantity'][] = 'Empty order quantity field';
     }
 
+    $sql = "SELECT category_id FROM products WHERE id = '$product_id'";
+    $result = mysqli_fetch_assoc(mysqli_query($connection, $sql));
+    $category_id = $result['category_id'];
+
+    $sql = "SELECT sm.surcharge, p.days_of_validity FROM store_management sm JOIN products p ON sm.category_id = p.category_id WHERE sm.store_id = '$store_id' and sm.category_id = '$category_id'";
+    $result = mysqli_fetch_assoc(mysqli_query($connection, $sql));
+
+    if(!isset($result['surcharge']) ?? null){
+        $errors['order_quantity'][] = 'Please go to `Register Category` and Set surcharge for this category';
+    }
+
+
 if (empty($errors)) {
     $product_quantity_after_purchase = $warehouse_quantity - $order_quantity;
+    $surcharge = $result['surcharge'];
+    $day_of_validity = $result['days_of_validity'];
+    $full_price = number_format(($purchase_price + $purchase_price * $surcharge), 2, '.');
 
-    $sql = "INSERT INTO store_products_warehouse (store_id, product_id, purchase_price) VALUES ('$store_id','$product_id','$purchase_price')";
+    $current_date = date("Y-m-d h:i:s");
+    $expires_at = date('Y-m-d H:i:s', strtotime($current_date . " +$day_of_validity day"));
 
-    for($counter = 1; $counter <= $order_quantity; $counter++){
-        mysqli_query($connection, $sql);
-    }
+
+    $sql = "INSERT INTO store_products_warehouse (store_id, product_id, quantity, full_price, expires_at) VALUES ('$store_id','$product_id','$order_quantity', '$full_price', '$expires_at')";
+    mysqli_query($connection, $sql);
+
 
     $sql2 = "UPDATE warehouse_products SET quantity='$product_quantity_after_purchase' WHERE product_id = '$product_id'";
     mysqli_query($connection, $sql2);
 
-    header('Location: index.php?action=warehouse_products_list');
+    header('Location: index.php?action=order_to_store');
 }
 
 }
-?>
 
-
-<?php
 $sql2 = "SELECT * FROM products_categories";
 $result2 = mysqli_query($connection, $sql2);
 $categories_array = [];
@@ -45,11 +62,10 @@ $categories_array = [];
 while ($row = mysqli_fetch_array($result2)) {
     $categories_array[] = $row['category'];
 }
+
 ?>
 
 
-
-<input type="button" onclick="location.href='index.php?action=products_list';" value="Go to Products" />
 <h1>Warehouse Products</h1>
 
 <form action="#" method="post">
@@ -101,7 +117,7 @@ while ($row = mysqli_fetch_array($result2)) {
 
     while ($row = mysqli_fetch_array($result)) { ?>
         <tr>
-            <form action="index.php?action=warehouse_products_list" method="post">
+            <form action="index.php?action=order_to_store" method="post">
                 <td>
                     <input type="hidden" name="product_id" value="<?php echo $row['id'] ?>">
                     <?php echo $row['id'] ?>

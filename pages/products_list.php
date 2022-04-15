@@ -80,7 +80,7 @@ if(isset($_POST['quantity'])){
         </td>
         <td>
             <?php
-            $sql = "SELECT * FROM warehouse_products WHERE id='". $row['id']."'";
+            $sql = "SELECT * FROM warehouse_products WHERE product_id='". $row['id']."'";
             $search_id = mysqli_fetch_assoc(mysqli_query($connection, $sql));
 
             if ($search_id) {?>
