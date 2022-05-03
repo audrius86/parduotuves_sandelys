@@ -36,6 +36,7 @@ if(isset($_POST['quantity'])){
     }
 }
 ?>
+
 <input type="button" onclick="location.href='index.php?action=warehouse_products';" value="Go to Warehouse" />
 <h1>Products List</h1>
 <h5 style="color: red"><?php

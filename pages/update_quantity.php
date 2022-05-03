@@ -25,7 +25,6 @@ if (isset($_POST['quantity'])) {
 $product_id = $_POST['product_id'];
 $sql = "SELECT p.id, w.quantity, p.product_title, p.price, c.category FROM warehouse_products w JOIN products p ON w.product_id = p.id JOIN products_categories c ON p.category_id = c.id WHERE p.id = '$product_id' ORDER BY p.id";
 $result = mysqli_fetch_array(mysqli_query($connection, $sql));
-//var_dump($result);
 ?>
 <table class="products_list">
     <tr>

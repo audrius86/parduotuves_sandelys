@@ -14,7 +14,7 @@ include 'config.php';
 </head>
 <body>
 <header>
-    <button id="admin_button" onclick="window.location.href='index.php'">Admin</button>
+<!--    <button id="admin_button" onclick="window.location.href='index.php'">Admin</button>-->
     <?php if (isLoged() === false) { ?>
         <a href="customer.php?action=home">Home</a>
         <a href="customer.php?action=login">Login</a>
@@ -35,17 +35,12 @@ include 'config.php';
         include 'customer/login.php';
     } elseif ($action === 'customer_registration') {
         include 'customer/customer_registration.php';
-    }
-
-
-    elseif ($action === 'shops') {
+    } elseif ($action === 'shops') {
         include 'customer/shops.php';
-    }
-
-
-
-    elseif ($action === 'update_data') {
+    } elseif ($action === 'update_data') {
         include 'customer/update_data.php';
+    } elseif ($action === 'shop_cart') {
+        include 'customer/shop_cart.php';
     } elseif ($action === 'logout') {
         include 'customer/logout.php';
     }
